@@ -1,0 +1,12 @@
+body{
+    background: #e2e2e2 !important;
+}
+
+.banner{
+    width: 100%;
+    height: 93vh;
+    background: black;
+    color: white;
+    background:Linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)) ,url(../img/hero.png);
+    background-size: cover;
+}
