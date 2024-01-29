@@ -1,0 +1,42 @@
+body {
+    background-image: url('../img/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.gradient-custom {
+    /* existing gradient styles... */
+}
+
+/* Adjust the card body padding */
+.card-body {
+    padding: 2rem 1.5rem; /* further reduced */
+}
+
+/* Adjust the spacing and font size of form elements */
+.form-outline.form-white {
+    margin-bottom: 1.5rem; /* further reduced */
+}
+
+.form-control-lg {
+    font-size: 0.75rem; /* further reduced */
+}
+
+/* Adjust the heading and paragraph sizes */
+h2 {
+    font-size: 1.25rem; /* further reduced */
+}
+
+.text-white-50 {
+    font-size: 0.8rem; /* further reduced */
+}
+
+/* Adjust container padding */
+.container.py-5.h-100 {
+    padding: 0; /* removed vertical padding */
+}
+
+
+
