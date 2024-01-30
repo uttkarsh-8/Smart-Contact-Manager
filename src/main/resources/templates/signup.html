@@ -7,7 +7,7 @@
 </head>
 <body>
 <section>
-    <form  action="" th:action="@{/do_register}" method="post" th:object="${user}">
+    <form:form  action="" th:action="@{/do_register}" method="post" th:object="${user}" model>
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,13 +22,14 @@
 
                                     <!-- Name Field -->
                                     <div class="form-outline form-white mb-4">
-                                        <input required name="name" th:value="${user.name}" type="text" id="typeNameX" class="form-control form-control-lg"
-                                        th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"/>
+                                        <input name="name" th:value="${user.name}" type="text" id="typeNameX" class="form-control form-control-lg"
+                                               th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
                                         <label class="form-label" for="typeNameX">Name</label>
-                                        <div class="invalid-feedback" th:each="e:${#fields.errors()}" th:text="${e}">
-                                            Please select a valid state.
+                                        <div class="invalid-feedback" th:each="error : ${#fields.errors('name')}" th:text="${error}">
+                                            <!-- Error message will be displayed here -->
                                         </div>
                                     </div>
+
 
                                     <!-- Email Field -->
                                     <div class="form-outline form-white mb-4">
@@ -66,7 +67,7 @@
                 </div>
             </div>
         </section>
-    </form>
+    </form:form>
 </section>
 </body>
 </html>

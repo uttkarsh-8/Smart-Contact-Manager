@@ -42,8 +42,8 @@ public class HomeController {
     // handling for registering user
 
     @PostMapping("/do_register")
-    public String register(@Valid @ModelAttribute("user")User user, Model model, HttpSession session, BindingResult result1){
-        try{
+    public String register(@Valid User user, Model model, BindingResult result1){
+
             if (result1.hasErrors()){
                 System.out.println("Error: "+ result1.toString());
                 model.addAttribute("user", user);
@@ -55,15 +55,7 @@ public class HomeController {
             user.setImageUrl("default.png");
             User result = userRepository.save(user);
             model.addAttribute("user", new User());
-            session.setAttribute("message", new Message("Successfully Registered!!", "alert-success"));
-            return "signup";
-        }catch (Exception e){
-            e.printStackTrace();
-            model.addAttribute("user", user);
-            session.setAttribute("message", new Message("Something went wrong!!" + e.getMessage(), "alert-danger"));
-            return "signup";
 
-        }
-
+            return "signup";
     }
 }
