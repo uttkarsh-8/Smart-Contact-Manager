@@ -1,42 +1,29 @@
 body {
-    background-image: url('../img/hero.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    font-family: 'Lato', sans-serif;
 }
 
-
-.gradient-custom {
-    /* existing gradient styles... */
+h1 {
+    margin-bottom: 40px;
 }
 
-/* Adjust the card body padding */
-.card-body {
-    padding: 2rem 1.5rem; /* further reduced */
+label {
+    color: #333;
 }
 
-/* Adjust the spacing and font size of form elements */
-.form-outline.form-white {
-    margin-bottom: 1.5rem; /* further reduced */
+.btn-send {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    width: 80%;
+    margin-left: 3px;
+}
+.help-block.with-errors {
+    color: #ff5050;
+    margin-top: 5px;
+
 }
 
-.form-control-lg {
-    font-size: 0.75rem; /* further reduced */
+.card{
+    margin-left: 10px;
+    margin-right: 10px;
 }
-
-/* Adjust the heading and paragraph sizes */
-h2 {
-    font-size: 1.25rem; /* further reduced */
-}
-
-.text-white-50 {
-    font-size: 0.8rem; /* further reduced */
-}
-
-/* Adjust container padding */
-.container.py-5.h-100 {
-    padding: 0; /* removed vertical padding */
-}
-
-
-

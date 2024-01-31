@@ -42,20 +42,23 @@ public class HomeController {
     // handling for registering user
 
     @PostMapping("/do_register")
-    public String register(@Valid User user, Model model, BindingResult result1){
+    public String register(@Valid @ModelAttribute("user") User user , BindingResult result1  , Model model){
 
-            if (result1.hasErrors()){
-                System.out.println("Error: "+ result1.toString());
-                model.addAttribute("user", user);
-                return "signup";
-            }
-
-            user.setEnabled(true);
-            user.setRole("ROLE_USER");
-            user.setImageUrl("default.png");
-            User result = userRepository.save(user);
-            model.addAttribute("user", new User());
-
+        if (result1.hasErrors()){
+            System.out.println("EEERRROOOOOOOORORRRRRRR HEEERRREEEEEEE"+result1);
+            model.addAttribute("user", user);
+            model.addAttribute("errors", result1);
             return "signup";
+            } else {
+                    System.out.println(user);
+                    user.setEnabled(true);
+                    user.setRole("ROLE_USER");
+                    user.setImageUrl("default.png");
+                    User result = userRepository.save(user);
+                    model.addAttribute("user", new User());
+
+                    return "signup";
+                }
+
     }
 }

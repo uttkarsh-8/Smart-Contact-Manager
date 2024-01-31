@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})"
+      xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
@@ -7,67 +8,93 @@
 </head>
 <body>
 <section>
-    <form:form  action="" th:action="@{/do_register}" method="post" th:object="${user}" model>
-        <section class="vh-100 gradient-custom">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
+    <div class="container">
+        <div class=" text-center mt-5 ">
+            <h1 >Signup form</h1>
+        </div>
 
-                                <div class="mb-md-5 mt-md-4 pb-5">
+        <div class="row ">
+            <div class="col-lg-7 mx-auto">
+                <div class="card mt-2 mx-auto p-4 bg-light">
+                    <div class="card-body bg-light">
 
-                                    <h2 class="fw-bold mb-2 text-uppercase">Signup</h2>
-                                    <p class="text-white-50 mb-5">Please enter your name, login and password!</p>
+                        <div class = "container">
+                            <form th:action="@{/do_register}" id="contact-form" role="form" method="post"
+                            th:object="${user}">
+                                <div class="controls">
 
-                                    <!-- Name Field -->
-                                    <div class="form-outline form-white mb-4">
-                                        <input name="name" th:value="${user.name}" type="text" id="typeNameX" class="form-control form-control-lg"
-                                               th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
-                                        <label class="form-label" for="typeNameX">Name</label>
-                                        <div class="invalid-feedback" th:each="error : ${#fields.errors('name')}" th:text="${error}">
-                                            <!-- Error message will be displayed here -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_name">Firstname *</label>
+                                                <input th:value="${user.name}" id="form_name" type="text" name="name" class="form-control"
+                                                   th:classappend="${#fields.hasErrors('name')?'is-invalid':''}" placeholder="Please enter your firstname *"  >
+                                                <div th:each="e:${#fields.errors('name')}" class="invalid-feedback" th:text="${e}">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_lastname">Password *</label>
+                                                <input th:value="${user.password}" id="form_lastname" type="password" name="password" class="form-control"
+                                                 th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" placeholder="Please enter your password *"  >
+                                                <div th:each="e:${#fields.errors('password')}" class="invalid-feedback" th:text="${e}">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="form_email">Email *</label>
+                                                <input th:value="${user.email}" id="form_email" type="email" name="email" class="form-control" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}" placeholder="Please enter your email *">
+                                                <div th:each="e:${#fields.errors('email')}" class="invalid-feedback">
+                                                    <span th:text="${e}"></span>
+                                                </div>
 
-
-                                    <!-- Email Field -->
-                                    <div class="form-outline form-white mb-4">
-                                        <input required name="email" th:value="${user.email}" type="email" id="typeEmailX" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typeEmailX">Email</label>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="form_message">About *</label>
+                                                <textarea th:classappend="${#fields.hasErrors('about')?'is-invalid':''}" th:value="${user.about}" id="form_message" name="about" class="form-control" placeholder="Write your message here." rows="4"></textarea>
+                                                <div th:each="e:${#fields.errors('about')}" class="invalid-feedback">
+                                                    <span th:text="${e}"></span>
+                                                </div>
+                                            </div>
 
-                                    <!-- Password Field -->
-                                    <div class="form-outline form-white mb-4">
-                                        <input required name="password" type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                        <label class="form-label" for="typePasswordX">Password</label>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+
+                                            <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
+                            " value="Send Message" >
+
+                                        </div>
+
                                     </div>
-
-                                    <!-- About Yourself Field -->
-                                    <div class="form-outline form-white mb-4">
-                                        <textarea required  name="about" th:value="${user.about}" id="aboutYourself" class="form-control" rows="5" placeholder="Tell us something about yourself..."></textarea>
-                                        <label class="form-label" for="aboutYourself">About Yourself</label>
-                                    </div>
-
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">Signup</button>
-                                    <!-- Add margin to the left of the Reset button -->
-                                    <button class="btn btn-outline-light btn-lg px-5" type="reset" style="margin-left: 20px;">Reset</button>
 
 
                                 </div>
-
-                                <div>
-                                    <p class="mb-0">Have have an account? <a href="#!" class="text-white-50 fw-bold">Login</a>
-                                    </p>
-                                </div>
-
-                            </div>
+                            </form>
                         </div>
                     </div>
+
+
                 </div>
+                <!-- /.8 -->
+
             </div>
-        </section>
-    </form:form>
+            <!-- /.row-->
+
+        </div>
+    </div>
+
+
 </section>
 </body>
 </html>
