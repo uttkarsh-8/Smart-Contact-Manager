@@ -11,13 +11,14 @@
     <div class="container">
         <div class=" text-center mt-5 ">
             <h1 >Signup form</h1>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
         </div>
 
         <div class="row ">
             <div class="col-lg-7 mx-auto">
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
-
                         <div class = "container">
                             <form th:action="@{/do_register}" id="contact-form" role="form" method="post"
                             th:object="${user}">
@@ -49,10 +50,8 @@
                                             <div class="form-group">
                                                 <label for="form_email">Email *</label>
                                                 <input th:value="${user.email}" id="form_email" type="email" name="email" class="form-control" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}" placeholder="Please enter your email *">
-                                                <div th:each="e:${#fields.errors('email')}" class="invalid-feedback">
-                                                    <span th:text="${e}"></span>
-                                                </div>
-
+                                                <div th:each="e:${#fields.errors('email')}" class="invalid-feedback" th:text="${e}"></div>
+                                                <div th:if="${duplicateEmail}" class="alert alert-danger" th:text="${duplicateEmail}"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -67,33 +66,21 @@
                                             </div>
 
                                         </div>
-
-
                                         <div class="col-md-12">
-
                                             <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
                             " value="Send Message" >
-
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </form>
                         </div>
                     </div>
-
-
                 </div>
                 <!-- /.8 -->
-
             </div>
             <!-- /.row-->
-
         </div>
     </div>
-
 
 </section>
 </body>
