@@ -51,7 +51,13 @@ public class MyConfig {
                         .anyRequest().permitAll()
                 )
                 // Configure form-based login
-                .formLogin(withDefaults());
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/signin") // Specify your custom login page
+                        .loginProcessingUrl("/perform_login") // Specify the URL to submit the username and password
+                        .defaultSuccessUrl("/", true) // Specify the default URL to redirect after successful login
+                        .failureUrl("/signin?error=true") // Specify the URL to redirect after failed login
+                        .permitAll() // Allow all users to view the login page without being logged in
+                );
 
         return http.build();
     }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="container">
+            <div class="text-center mt-5">
+                <h1>Signin Form</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <form  th:action="@{/signin}" id="contact-form" method="post">
+                                <div class="mb-3">
+                                    <label for="form_email" class="form-label">Email *</label>
+                                    <input id="form_email" type="email" name="username" class="form-control" placeholder="Please enter your email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="form_password" class="form-label">Password *</label>
+                                    <input id="form_password" type="password" name="password" class="form-control" placeholder="Please enter your password">
+                                </div>
+                                <div class="">
+                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Added closing div tag here -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</section>
+</body>
+</html>
