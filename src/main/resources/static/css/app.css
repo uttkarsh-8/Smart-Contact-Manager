@@ -1,24 +1,24 @@
-body{
-    background: #e2e2e2 !important;
-}
+    body{
+        background: #e2e2e2 !important;
+    }
 
-.banner{
-    width: 100%;
-    height: 93vh;
-    background: black;
-    color: white;
-    background:Linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)) ,url(../img/hero.png);
-    background-size: cover;
-}
+    .banner{
+        width: 100%;
+        height: 100vh;
+        background: black;
+        color: white;
+        background:Linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)) ,url(../img/hero.png);
+        background-size: cover;
+    }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #ffffff; /* Example: bright orange; adjust the color as needed */
-}
+    .navbar-dark .navbar-nav .nav-link {
+        color: #ffffff; /* Example: bright orange; adjust the color as needed */
+    }
 
-/* For active state */
-.navbar-dark .navbar-nav .nav-link.active {
-    color: #ffffff; /* Lighter orange for the active link */
-}
+    /* For active state */
+    .navbar-dark .navbar-nav .nav-link.active {
+        color: #ffffff; /* Lighter orange for the active link */
+    }
 /* For sidebar*/
 
 @media (max-width: 768px) {
