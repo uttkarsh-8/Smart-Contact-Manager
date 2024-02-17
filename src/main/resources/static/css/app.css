@@ -11,4 +11,78 @@ body{
     background-size: cover;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff; /* Example: bright orange; adjust the color as needed */
+}
 
+/* For active state */
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff; /* Lighter orange for the active link */
+}
+/* For sidebar*/
+
+@media (max-width: 768px) {
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background: white;
+        height: 100vh;
+        position: fixed;
+        padding-top: 45px;
+    }
+    .content{
+        margin-left: 0% !important;
+    }
+}
+
+.sidebar{
+    background: white;
+    color: white;
+    height: 100vh;
+    width: 18%;
+    position: fixed;
+    padding-top: 45px;
+}
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: rgb(128, 128, 128);
+}
+
+.sidebar a:hover{
+    background: #f4f4f4;
+    color: black;
+}
+
+.sidebar .divider{
+    height: 2.5px;
+    width: 100%;
+    background: #f4f4f4;
+    margin-top: 10px;
+}
+
+/* Targeting icons within sidebar items */
+.sidebar .item i {
+    margin-right: 9.9px; /* Adjust the space as needed */
+}
+
+
+.content {
+    margin-left: 20%;
+}
+
+.sidebar .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+}
+
+.fas.fa-bars {
+    cursor: pointer;
+}

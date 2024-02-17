@@ -62,9 +62,6 @@ public class HomeController {
             model.addAttribute("user", new UserRegistrationDto()); // to clear the form
             model.addAttribute("success", "User has been registered successfully"); // to show user is successfully registered
             return "signup";
-//            model.addAttribute("user", new User()); // to clear the form
-//            model.addAttribute("success", "User has been registered successfully"); // to show user is successfully registered
-//                return "signup";
 
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();

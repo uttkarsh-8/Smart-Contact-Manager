@@ -54,7 +54,7 @@ public class MyConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/signin") // Specify your custom login page
                         .loginProcessingUrl("/signin") // Specify the URL to submit the username and password
-                        .defaultSuccessUrl("/", true) // Specify the default URL to redirect after successful login
+                        .defaultSuccessUrl("/user/index", true) // Specify the default URL to redirect after successful login
                         .failureUrl("/signin?error=true") // Specify the URL to redirect after failed login
                         .permitAll() // Allow all users to view the login page without being logged in
                 );
