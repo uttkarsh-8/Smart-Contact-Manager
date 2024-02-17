@@ -38,7 +38,7 @@ public class User {
     private String imageUrl;
     @Column(length = 500)
     @NotBlank(message = "Name field is required")
-    @Size(min = 2, max = 30, message = "Min 2 and Max 30 characters are allowed")
+    @Size(min = 2, max = 300, message = "Min 2 and Max 300   characters are allowed")
     private String about;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Contact> contacts = new ArrayList<>();

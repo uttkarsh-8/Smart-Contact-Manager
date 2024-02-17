@@ -42,6 +42,7 @@ body{
     width: 18%;
     position: fixed;
     padding-top: 45px;
+    z-index: 9999999999999999999999999999;
 }
 
 .sidebar a{

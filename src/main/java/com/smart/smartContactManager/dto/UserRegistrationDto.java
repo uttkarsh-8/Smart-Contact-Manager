@@ -27,7 +27,7 @@ public class UserRegistrationDto {
             message = "Password must be 8 to 20 characters long and include at least one digit, one uppercase letter, one lowercase letter, and one special character.")
     private String password;
 
-    @Size(min = 2, max = 30, message = "Min 2 and Max 30 characters are allowed")
+    @Size(min = 2, max = 300, message = "Min 2 and Max 300 characters are allowed")
     private String about;
 
 }
