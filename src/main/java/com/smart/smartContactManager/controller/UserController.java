@@ -4,14 +4,19 @@
     import com.smart.smartContactManager.dao.UserRepository;
     import com.smart.smartContactManager.entities.Contact;
     import com.smart.smartContactManager.entities.User;
+    import com.smart.smartContactManager.service.ContactService;
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.core.io.ClassPathResource;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.ModelAttribute;
-    import org.springframework.web.bind.annotation.PostMapping;
-    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.*;
+    import org.springframework.web.multipart.MultipartFile;
 
+    import java.io.File;
+    import java.nio.file.Files;
+    import java.nio.file.Path;
+    import java.nio.file.Paths;
+    import java.nio.file.StandardCopyOption;
     import java.security.Principal;
 
     @Controller
@@ -20,6 +25,9 @@
 
         @Autowired
         private UserRepository userRepository;
+
+        @Autowired
+        private ContactService contactService;
 
         @ModelAttribute //method to add common data to response
         public void addCommonData(Model model, Principal principal){
@@ -43,14 +51,18 @@
         }
         // Processing add contact form
         @PostMapping("/process-contact")
-        public String processContact(@ModelAttribute Contact contact, Principal principal){
-            System.out.println("Contact info is hererererer"+contact);
-            String name = principal.getName();
-            User user = userRepository.getUserByUserName(name);
-            contact.setUser(user);
-            user.getContacts().add(contact);
-            userRepository.save(user);
-            System.out.println("ADDED TO DATA BASE");
+        public String processContact(@ModelAttribute Contact contact, @RequestParam ("profileImage") MultipartFile multipartFile, Principal principal){
+            try{
+                String name = principal.getName();
+
+                contactService.saveContact(contact, name, multipartFile);
+                System.out.println("ADDED TO DATA BASE");
+
+            }catch (Exception e){
+                System.out.println("Error occurred!!");
+                e.printStackTrace();
+            }
+
             return "normal/add_contact_form";
         }
     }
