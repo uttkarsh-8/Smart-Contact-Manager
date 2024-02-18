@@ -9,9 +9,12 @@
     import org.springframework.core.io.ClassPathResource;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
+    import org.springframework.validation.BindingResult;
     import org.springframework.web.bind.annotation.*;
     import org.springframework.web.multipart.MultipartFile;
+    import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+    import javax.validation.Valid;
     import java.io.File;
     import java.nio.file.Files;
     import java.nio.file.Path;
@@ -51,18 +54,28 @@
         }
         // Processing add contact form
         @PostMapping("/process-contact")
-        public String processContact(@ModelAttribute Contact contact, @RequestParam ("profileImage") MultipartFile multipartFile, Principal principal){
+        public String processContact(@Valid @ModelAttribute Contact contact, BindingResult result, @RequestParam ("profileImage") MultipartFile multipartFile, Principal principal, RedirectAttributes redirectAttributes){
             try{
+                if(result.hasErrors()){
+                    System.out.println("Error "+result);
+                    redirectAttributes.addFlashAttribute("error", "Failed to add contact");
+                    System.out.println("ERROR IN BINDING RESULT");
+                    return "redirect:/user/add-contact";
+
+                }
                 String name = principal.getName();
 
                 contactService.saveContact(contact, name, multipartFile);
                 System.out.println("ADDED TO DATA BASE");
 
+                redirectAttributes.addFlashAttribute("success", "Contact added successfully");
+                    return "redirect:/user/add-contact";
             }catch (Exception e){
                 System.out.println("Error occurred!!");
                 e.printStackTrace();
-            }
 
-            return "normal/add_contact_form";
+                redirectAttributes.addFlashAttribute("error", "Failed to add contact");
+                return "redirect:/user/add-contact";
+            }
         }
     }

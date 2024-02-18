@@ -9,6 +9,21 @@
     <div class="card me-4 ms-4">
         <div class="card-body">
             <h1 class="text-center">Add Contact</h1>
+            <!--message box-->
+            <!-- Success Message -->
+            <div th:if="${success}" class="container">
+                <div class="alert alert-success text-center" role="alert" th:text="${success}">
+                    <!-- Success message from controller will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div th:if="${error}" class="container">
+                <div class="alert alert-danger text-center" role="alert" th:text="${error}">
+                    <!-- Error message from controller will be displayed here -->
+                </div>
+            </div>
+
             <div class="container-fluid mt-1">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -17,7 +32,8 @@
                               enctype="multipart/form-data"
                               method="post"
                               th:action="@{/user/process-contact}"
-                              class="mt-2">
+                              class="mt-2"
+                              id="contactForm">
                                 <!--First name -->
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -25,7 +41,7 @@
                                         <i class="fa fa-plus"></i>
                                     </div>
                                 </div>
-                                <input type="text" id="name" name="name" placeholder="Enter first name" class="form-control">
+                                <input required type="text" id="name" name="name" placeholder="Enter first name" class="form-control">
                             </div>
                             <!--Second name -->
                             <div class="input-group mt-3">
@@ -34,7 +50,7 @@
                                         <i class="fas fa-user-alt"></i>
                                     </div>
                                 </div>
-                            <input type="text" id="secondName" name="secondName" placeholder="Enter nick-name" class="form-control">
+                            <input required type="text" id="secondName" name="secondName" placeholder="Enter nick-name" class="form-control">
                             </div>
                             <!--Phone number-->
                             <div class="input-group mt-3">
@@ -43,7 +59,7 @@
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
                                 </div>
-                                <input type="number" id="phone" name="phone" placeholder="Enter phone number" class="form-control">
+                                <input required  type="number" id="phone" name="phone" placeholder="Enter phone number (Must be 10 digits)" class="form-control">
                             </div>
                             <!--Email-->
                             <div class="input-group mt-3">
@@ -52,7 +68,7 @@
                                         <i class="fa-solid fa-envelope"></i>
                                     </div>
                                 </div>
-                                <input type="email" id="email" name="email" placeholder="Enter email" class="form-control">
+                                <input required type="email" id="email" name="email" placeholder="Enter email" class="form-control">
                             </div>
                             <!--Work Field-->
                             <div class="input-group mt-3">
@@ -61,15 +77,15 @@
                                         <i class="fa-solid fa-briefcase"></i>
                                     </div>
                                 </div>
-                                <input type="text" id="work" name="work" placeholder="Enter work field" class="form-control">
+                                <input required type="text" id="work" name="work" placeholder="Enter work field" class="form-control">
                             </div>
                             <!--Contact Description-->
                             <div class="form-group mt-3">
-                               <textarea placeholder="Enter contact description" name="description" id="description" class="form-control" rows="10"></textarea>
+                               <textarea  placeholder="Enter contact description" name="description" id="mytextarea" class="form-control" rows="10"></textarea>
                             </div>
                             <!--Contact Image-->
                             <div class="custom-file">
-                                <input type="file" name="profileImage">
+                                <input required type="file" name="profileImage">
                             </div>
                             <!--Submit-->
                             <div class="container text-center">
@@ -81,6 +97,32 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.tiny.cloud/1/28co40nnyzu54jmr9w790ewfn46cgakouayok3br71ifaokm/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!--This script is to get a validation at TInyMCe as required at description has to be removed due to Tinymce-->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            tinymce.init({
+                selector: '#mytextarea',
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        // Trigger save on change
+                        editor.save();
+                    });
+                }
+            });
+
+            document.getElementById('contactForm').addEventListener('submit', function(event) {
+                var content = tinymce.get('mytextarea').getContent();
+                if (content.trim().length === 0) {
+                    event.preventDefault(); // Prevent form submission
+                    alert('Please fill out the description.');
+                    tinymce.get('mytextarea').focus();
+                }
+            });
+        });
+    </script>
 </section>
 
 </body>
