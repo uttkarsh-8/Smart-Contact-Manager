@@ -8,6 +8,8 @@
     import com.smart.smartContactManager.service.ContactService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.core.io.ClassPathResource;
+    import org.springframework.data.domain.Page;
+    import org.springframework.data.domain.PageRequest;
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
     import org.springframework.validation.BindingResult;
@@ -83,17 +85,26 @@
             }
         }
 
-        //show contacts
-        @GetMapping("/show-contacts")
-        public String showContacts(Model model, Principal principal){
+        //show contact handler
+        // per page = 5[n]
+        // current page = 0 [page]
+        @GetMapping("/show-contacts/{page}")
+        public String showContacts(@PathVariable("page") int page,Model model, Principal principal){
                 model.addAttribute("title", "All Contacts");
 
                 String userName = principal.getName();
                 User user = userRepository.getUserByUserName(userName);
 
-                List<Contact> contacts = contactRepository.findContactsByUserUserid(user.getId());
+                //pagination logic
+                //current page = page
+                //contact per page = 5
+            PageRequest pageRequest = PageRequest.of(page, 5);
 
-                model.addAttribute("contacts", contacts);
+            Page<Contact> contacts = contactRepository.findContactsByUserUserid(user.getId(), pageRequest);
+
+                model.addAttribute("contacts", contacts); //contacts
+                model.addAttribute("currentPage", page); //current page
+                model.addAttribute("totalPages", contacts.getTotalPages()); //total pages
 
             return "normal/show_contacts";
         }
