@@ -23,8 +23,13 @@
                 <tbody>
                 <tr th:each="c : ${contacts}">
                     <th scope="row" th:text="CLSID+${c.cId}">1</th>
+                    <td>
+                        <img src="" class="profilePic" th:src="@{'/img/'+${c.image}}" alt="profile-pic">
+                    </td>
                     <td th:text="${c.name}">Mark</td>
-                    <td th:text="${c.email}">Otto</td>
+                    <td>
+                        <a href="" th:href="@{'/user/contact/'+${c.cId}}"><span th:text="${c.email}"></span></a>
+                    </td>
                     <td th:text="${c.phone}">@mdo</td>
                     <td>
                         <button class="btn btn-primary me-3"><i class="fa-solid fa-pen"></i></button>

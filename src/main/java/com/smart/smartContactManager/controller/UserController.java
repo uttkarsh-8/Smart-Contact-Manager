@@ -25,6 +25,7 @@
     import java.nio.file.StandardCopyOption;
     import java.security.Principal;
     import java.util.List;
+    import java.util.Optional;
 
     @Controller
     @RequestMapping("/user")
@@ -107,5 +108,19 @@
                 model.addAttribute("totalPages", contacts.getTotalPages()); //total pages
 
             return "normal/show_contacts";
+        }
+
+        //showing particular contact details
+        @GetMapping("/contact/{cId}")
+        public String showContactDetails(@PathVariable("cId") int cId, Model model){
+            System.out.println("CID "+cId);
+            model.addAttribute("title", "Contact Details");
+
+            Optional<Contact> contactOptional = contactRepository.findById(cId);
+            Contact contact = contactOptional.get();
+
+            model.addAttribute("contact", contact);
+
+            return "normal/contact_detail";
         }
     }

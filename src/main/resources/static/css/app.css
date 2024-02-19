@@ -87,3 +87,10 @@
 .fas.fa-bars {
     cursor: pointer;
 }
+
+.profilePic{
+    width:70px;
+    height: 50px;
+object-fit: cover;
+    border-radius: 47%;
+}

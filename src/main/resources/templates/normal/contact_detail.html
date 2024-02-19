@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>These are the contact details!!</title>
+</head>
+<body>
+<section>
+    <div class="card me-3 ms-3">
+        <div class="card-body">
+            <div class="container text-center">
+                <img style="height: 200px; width: 200px" src="" class="profilePic" th:src="@{'/img/'+${contact.image}}" alt="profile-pic">
+
+                <h3><span th:text="${contact.name}"></span>  (<span th:text="${contact.secondName}"></span>)</h3>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">CMS<span th:text="${contact.cId}"></span></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td><span th:text="${contact.name}"></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td><span th:text="${contact.email}"></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Phone Number</th>
+                        <td><span th:text="${contact.phone}"></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Work</th>
+                        <td><span th:text="${contact.work}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="container description mt-4">
+                        <th:block th:utext="${contact.description}"></th:block>
+                </div>
+
+                <div class="container mt-3">
+                    <button class="btn btn-primary me-3 btn-block"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger btn-block"><i class="fa-solid fa-trash"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
