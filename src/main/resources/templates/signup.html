@@ -39,7 +39,7 @@
                                             <div class="form-group">
                                                 <label for="form_lastname">Password *</label>
                                                 <input th:value="${user.password}" id="form_lastname" type="password" name="password" class="form-control"
-                                                 th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" placeholder="Please enter your password *"  >
+                                                     th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" placeholder="Please enter your password *"  >
                                                 <div th:each="e:${#fields.errors('password')}" class="invalid-feedback" th:text="${e}">
                                                 </div>
                                             </div>

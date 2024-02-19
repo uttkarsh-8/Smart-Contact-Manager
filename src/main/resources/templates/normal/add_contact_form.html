@@ -41,7 +41,9 @@
                                         <i class="fa fa-plus"></i>
                                     </div>
                                 </div>
-                                <input required type="text" id="name" name="name" placeholder="Enter first name" class="form-control">
+                                <input required type="text" id="name" name="name" placeholder="Enter first name" class="form-control" th:classappend="${#fields.hasErrors('name')?'is-invalid':''}">
+                                <div th:each="e:${#fields.errors('name')}" class="invalid-feedback" th:text="${e}">
+                                </div>
                             </div>
                             <!--Second name -->
                             <div class="input-group mt-3">
@@ -50,7 +52,9 @@
                                         <i class="fas fa-user-alt"></i>
                                     </div>
                                 </div>
-                            <input required type="text" id="secondName" name="secondName" placeholder="Enter nick-name" class="form-control">
+                            <input required type="text" id="secondName" name="secondName" placeholder="Enter nick-name" class="form-control" th:classappend="${#fields.hasErrors('secondName')?'is-invalid':''}">
+                                <div th:each="e:${#fields.errors('secondName')}" class="invalid-feedback" th:text="${e}">
+                                </div>
                             </div>
                             <!--Phone number-->
                             <div class="input-group mt-3">
@@ -59,7 +63,9 @@
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
                                 </div>
-                                <input required  type="number" id="phone" name="phone" placeholder="Enter phone number (Must be 10 digits)" class="form-control">
+                                <input required  type="number" id="phone" name="phone" placeholder="Enter phone number (Must be 10 digits)" class="form-control" th:classappend="${#fields.hasErrors('phone')?'is-invalid':''}">
+                                <div th:each="e:${#fields.errors('phone')}" class="invalid-feedback" th:text="${e}">
+                                </div>
                             </div>
                             <!--Email-->
                             <div class="input-group mt-3">
@@ -68,7 +74,9 @@
                                         <i class="fa-solid fa-envelope"></i>
                                     </div>
                                 </div>
-                                <input required type="email" id="email" name="email" placeholder="Enter email" class="form-control">
+                                <input required type="email" id="email" name="email" placeholder="Enter email" class="form-control" th:classappend="${#fields.hasErrors('email')?'is-invalid':''}">
+                                <div th:each="e:${#fields.errors('email')}" class="invalid-feedback" th:text="${e}">
+                                </div>
                             </div>
                             <!--Work Field-->
                             <div class="input-group mt-3">

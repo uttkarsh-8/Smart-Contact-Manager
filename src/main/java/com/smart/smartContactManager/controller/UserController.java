@@ -59,13 +59,12 @@
         }
         // Processing add contact form
         @PostMapping("/process-contact")
-        public String processContact(@Valid @ModelAttribute Contact contact, BindingResult result, @RequestParam ("profileImage") MultipartFile multipartFile, Principal principal, RedirectAttributes redirectAttributes){
+        public String processContact(@Valid @ModelAttribute Contact contact, BindingResult result, @RequestParam ("profileImage") MultipartFile multipartFile, Principal principal, RedirectAttributes redirectAttributes, Model model){
             try{
                 if(result.hasErrors()){
                     System.out.println("Error "+result);
-                    redirectAttributes.addFlashAttribute("error", "Failed to add contact");
                     System.out.println("ERROR IN BINDING RESULT");
-                    return "redirect:/user/add-contact";
+                    return "normal/add_contact_form";
 
                 }
                 String name = principal.getName();
