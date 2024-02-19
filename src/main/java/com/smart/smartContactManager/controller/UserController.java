@@ -112,14 +112,24 @@
 
         //showing particular contact details
         @GetMapping("/contact/{cId}")
-        public String showContactDetails(@PathVariable("cId") int cId, Model model){
+        public String showContactDetails(@PathVariable("cId") int cId, Model model, Principal principal){
             System.out.println("CID "+cId);
             model.addAttribute("title", "Contact Details");
 
             Optional<Contact> contactOptional = contactRepository.findById(cId);
             Contact contact = contactOptional.get();
 
-            model.addAttribute("contact", contact);
+            String userName =  principal.getName();
+            User user = userRepository.getUserByUserName(userName);
+            //check for user id and contact user id are same
+            try{
+                if (user.getId() == contact.getUser().getId()){
+                    model.addAttribute("contact", contact);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
 
             return "normal/contact_detail";
         }
