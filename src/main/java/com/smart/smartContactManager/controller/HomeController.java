@@ -54,7 +54,7 @@ public class HomeController {
     public String register(@Valid @ModelAttribute("user") UserRegistrationDto userDto, BindingResult result1, Model model) {
         try {
             if (result1.hasErrors()) {
-                System.out.println("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR" + result1);
+                System.out.println("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR" + result1);
                 model.addAttribute("user", userDto); // to keep the data in the form
                 return "signup";
             }
