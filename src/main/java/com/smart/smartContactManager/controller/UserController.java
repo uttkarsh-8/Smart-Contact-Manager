@@ -1,6 +1,7 @@
     package com.smart.smartContactManager.controller;
 
 
+    import com.smart.smartContactManager.dao.ContactRepository;
     import com.smart.smartContactManager.dao.UserRepository;
     import com.smart.smartContactManager.entities.Contact;
     import com.smart.smartContactManager.entities.User;
@@ -21,6 +22,7 @@
     import java.nio.file.Paths;
     import java.nio.file.StandardCopyOption;
     import java.security.Principal;
+    import java.util.List;
 
     @Controller
     @RequestMapping("/user")
@@ -31,6 +33,9 @@
 
         @Autowired
         private ContactService contactService;
+
+        @Autowired
+        private ContactRepository contactRepository;
 
         @ModelAttribute //method to add common data to response
         public void addCommonData(Model model, Principal principal){
@@ -77,5 +82,20 @@
                 redirectAttributes.addFlashAttribute("error", "Failed to add contact");
                 return "redirect:/user/add-contact";
             }
+        }
+
+        //show contacts
+        @GetMapping("/show-contacts")
+        public String showContacts(Model model, Principal principal){
+                model.addAttribute("title", "All Contacts");
+
+                String userName = principal.getName();
+                User user = userRepository.getUserByUserName(userName);
+
+                List<Contact> contacts = contactRepository.findContactsByUserUserid(user.getId());
+
+                model.addAttribute("contacts", contacts);
+
+            return "normal/show_contacts";
         }
     }

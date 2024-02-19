@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-uppercase"> <!-- Changed to ms-auto here -->
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                        <a class="nav-link active" aria-current="page" th:href="@{/user/index}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" tabindex="-1"  ><span th:text="${user.name}"></span></a>
@@ -35,7 +35,7 @@
         <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
 
         <a href="" th:href="@{/user/index}" class="item"><i class="fa-solid fa-house"></i>Home</a>
-        <a href="" class="item"><i class="fa-solid fa-address-book"></i>View Contacts</a>
+        <a href="" th:href="@{/user/show-contacts}" class="item"><i class="fa-solid fa-address-book"></i>View Contacts</a>
         <a href="" th:href="@{/user/add-contact}" class="item"><i class="fa-solid fa-pencil"></i>Add Contacts</a>
         <a href="" class="item"><i class="fa-solid fa-user"></i>Your Profile</a>
         <a href="" class="item"><i class="fa-solid fa-gears"></i>Settings</a>
@@ -47,9 +47,6 @@
 
     <div class="content mt-5">
         <i onclick="toggleSidebar()" class="fas fa-bars m-3"></i>
-
-
-
         <div th:replace="${content}"></div>
     </div>
 
