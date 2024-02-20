@@ -34,6 +34,9 @@
                               th:action="@{/user/process-update}"
                               class="mt-2"
                               id="contactForm">
+
+                            <input type="hidden" th:value="${contact.cId}" name="cId">
+                            
                             <!--First name -->
                             <div class="input-group">
                                 <div class="input-group-prepend">

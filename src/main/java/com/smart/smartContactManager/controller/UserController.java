@@ -173,4 +173,51 @@
             }
 
         }
+
+        //update contact handler
+
+        @PostMapping("/process-update")
+        public String updateHandler(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile  multipartFile, Model model, Principal principal) {
+
+            try {
+
+                Contact oldContact = contactRepository.findById(contact.getCId()).get();
+
+                if (!multipartFile.isEmpty()){
+
+                // update new photo
+                    File saveFile = new ClassPathResource("stat/img").getFile();
+                    Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+ multipartFile.getOriginalFilename());
+                    Files.copy(multipartFile.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                    contact.setImage(multipartFile.getOriginalFilename());
+
+
+                }else {
+                    contact.setImage(oldContact.getImage());
+                }
+
+
+                String userName = principal.getName();
+                User user = userRepository.getUserByUserName(userName);
+
+                contact.setUser(user);
+                Contact updatedContact = contactRepository.save(contact);
+
+                contact.setUser(user);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+
+                return "normal/update_form";
+            }
+
+            System.out.println("CONTACT name " + contact.getName());
+            System.out.println("CONTACT ID " + contact.getCId());
+            System.out.println("CONTACT email " + contact.getEmail());
+            System.out.println("CONTACT phone " + contact.getPhone());
+            System.out.println("CONTACT cId" + contact.getCId());
+            return "redirect:/user/contact/"+contact.getCId();
+        }
     }
