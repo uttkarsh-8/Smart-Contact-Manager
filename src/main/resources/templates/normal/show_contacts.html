@@ -37,8 +37,11 @@
                     </td>
                     <td th:text="${c.phone}">@mdo</td>
                     <td>
-                        <button class="btn btn-primary me-3"><i class="fa-solid fa-pen"></i></button>
-                        <a href="#" th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        <form th:action="@{'/user/update-contact/'+${c.cId}}" method="post" action="">
+                            <button type="submit" class="btn btn-primary me-3"><i class="fa-solid fa-pen"></i></button>
+                        </form>
+
+                        <a href="#" th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger mt-2"><i class="fa-solid fa-trash"></i></a>
 
                     </td>
                 </tr>

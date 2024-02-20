@@ -150,4 +150,27 @@
 
             return "redirect:/user/show-contacts/0";
         }
+
+        // update form handler
+
+        @PostMapping("/update-contact/{cId}")
+        public String updateForm(Model model, @PathVariable("cId") int cId){
+            model.addAttribute("title", "Update Contact");
+            try{
+                Optional<Contact> contactOptional = contactRepository.findById(cId);
+
+                Contact contact = contactOptional.get();
+
+                model.addAttribute("contact", contact);
+//                model.addAttribute("success", "Contact updated successfully");
+
+                return "normal/update_form";
+            }catch (Exception e){
+                model.addAttribute("error", "Cannot update the contact");
+                e.printStackTrace();
+
+                return "normal/update_form";
+            }
+
+        }
     }
