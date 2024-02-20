@@ -10,10 +10,15 @@
         <div class="card-body">
             <h1 class="text-center">Your Contacts</h1>
 
+            <div th:if="${success}" class="alert alert-success text-center" role="alert">
+                <p th:text="${success}"></p>
+            </div>
+
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">#Contact ID</th>
+                    <th scope="col">Profile Picture</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Phone</th>
@@ -33,7 +38,7 @@
                     <td th:text="${c.phone}">@mdo</td>
                     <td>
                         <button class="btn btn-primary me-3"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        <a href="#" th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
 
                     </td>
                 </tr>

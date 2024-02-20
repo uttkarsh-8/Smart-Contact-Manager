@@ -133,4 +133,21 @@
 
             return "normal/contact_detail";
         }
+
+        //delete contact handler
+        @GetMapping("/delete/{cId}")
+        public String deleteContact(@PathVariable("cId")int cId, Model model, RedirectAttributes redirectAttributes){
+
+            Optional<Contact> contactOptional = contactRepository.findById(cId);
+            Contact contact = contactOptional.get();
+
+            contact.setUser(null);
+
+            contactRepository.delete(contact);
+
+            System.out.println("CONTACT DELETED");
+            redirectAttributes.addFlashAttribute("success", "Contact deleted successfully");
+
+            return "redirect:/user/show-contacts/0";
+        }
     }
